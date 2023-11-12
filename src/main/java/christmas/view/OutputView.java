@@ -41,6 +41,7 @@ public class OutputView {
     }
 
     public void printBenefit(int date, Order order, Benefit benefit) {
+        System.out.printf(ConstantUtils.NEW_LINE);
         System.out.println(ConstantUtils.DISCOUNT_TITLE);
         if (benefit.noBenefit()) {
             System.out.println("없음");
@@ -48,11 +49,24 @@ public class OutputView {
         System.out.println(benefit.getBenefits(date, order));
     }
 
-    public void printTotalAmountOfBenefit(int date, Order order, Benefit benefit) {
-        int AmountOfBenefit = benefit.getTotalBenefit(date, order);
+    public void printTotalAmountOfBenefit(int benefit) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        String totalAmountOfBenefit = decimalFormat.format(AmountOfBenefit);
+        String totalAmountOfBenefit = decimalFormat.format(benefit);
         System.out.println(ConstantUtils.TOTAL_BENEFIT_TITLE);
-        System.out.printf("%s원", totalAmountOfBenefit);
+        System.out.printf("%s원\n", totalAmountOfBenefit);
+    }
+
+    public void printExpectedPaymentAmount(int price){
+        System.out.printf(ConstantUtils.NEW_LINE);
+        System.out.println(ConstantUtils.TOTAL_PRICE_AFTER_BENEFIT_TITLE);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        String ExpectedPaymentAmount = decimalFormat.format(price);
+        System.out.printf("%s원\n", ExpectedPaymentAmount);
+    }
+
+    public void printBadge(String badgeName) {
+        System.out.printf(ConstantUtils.NEW_LINE);
+        System.out.println(ConstantUtils.EVENT_BADGE_TITLE);
+        System.out.println(badgeName);
     }
 }

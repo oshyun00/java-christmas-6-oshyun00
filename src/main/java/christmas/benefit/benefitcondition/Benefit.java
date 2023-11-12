@@ -44,4 +44,13 @@ public class Benefit {
         }
         return stringBuilder.toString();
     }
+
+    public int getFinalBenefitAmount(int date, Order order){
+
+        int totalBenefit = getTotalBenefit(date, order);
+        if(benefitConditions[4].isSatisfied())  {
+            totalBenefit += 25000;
+        }
+        return totalBenefit;
+    }
 }
