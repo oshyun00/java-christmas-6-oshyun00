@@ -1,5 +1,6 @@
 package christmas.benefit.benefitcondition;
 
+import christmas.domain.Order;
 import java.text.DecimalFormat;
 
 public class ChristmasDDayCondition implements BenefitCondition {
@@ -7,20 +8,20 @@ public class ChristmasDDayCondition implements BenefitCondition {
     DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
     @Override
-    public void checkDiscountCondition(int date, int totalPrice) {
+    public void checkDiscountCondition(int date, int totalPrice, Order order) {
         if (date < 26) {
             setSatisfied(true);
         }
     }
 
     @Override
-    public int calculateBenefit(int date) {
-        return - (1000 + 100 * (date - 1));
+    public int calculateBenefit(int date, Order order) {
+        return -(1000 + 100 * (date - 1));
     }
 
-    public String printBenefit(int date){
-        return decimalFormat.format(calculateBenefit(date));
-    };
+    public String printBenefit(int date, Order order) {
+        return decimalFormat.format(calculateBenefit(date, order));
+    }
 
     @Override
     public boolean isSatisfied() {

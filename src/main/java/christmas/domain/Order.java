@@ -1,6 +1,8 @@
 package christmas.domain;
 
 import christmas.domain.product.Product;
+import christmas.domain.product.subproduct.Dessert;
+import christmas.domain.product.subproduct.MainDish;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -12,7 +14,7 @@ public class Order {
     }
 
     // 주문한 메뉴 목록 출력
-    public String printOrder(){
+    public String printOrder() {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map.Entry<Product, Integer> entry : orders.entrySet()) {
             Product product = entry.getKey();
@@ -25,9 +27,9 @@ public class Order {
         return stringJoiner.toString();
     }
 
-    public int calculateTotalPriceBeforeEvent(){
+    public int calculateTotalPriceBeforeEvent() {
         int price = 0;
-        for(Map.Entry<Product, Integer> entry: orders.entrySet()){
+        for (Map.Entry<Product, Integer> entry : orders.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
 
@@ -35,5 +37,27 @@ public class Order {
             price += eachPrice * quantity;
         }
         return price;
+    }
+
+    public int countMainDish() {
+        int count = 0;
+        for (Map.Entry<Product, Integer> entry : orders.entrySet()) {
+            Product product = entry.getKey();
+            if (product instanceof MainDish) {
+                count += entry.getValue();
+            }
+        }
+        return count;
+    }
+
+    public int countDessert() {
+        int count = 0;
+        for (Map.Entry<Product, Integer> entry : orders.entrySet()) {
+            Product product = entry.getKey();
+            if (product instanceof Dessert) {
+                count += entry.getValue();
+            }
+        }
+        return count;
     }
 }
