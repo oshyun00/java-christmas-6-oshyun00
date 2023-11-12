@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.Order;
 import christmas.domain.product.Product;
 import christmas.domain.product.ProductRepository;
 import christmas.view.InputView;
@@ -16,5 +17,7 @@ public class Planner {
         Map<Product, Integer> orderMenu = inputView.readMenu();
         System.out.println(orderMenu);
         outputView.printEventPreviewMessage(date);
+        Order order = new Order(orderMenu);
+        outputView.printOrderMenu(order.printOrder());
     }
 }
