@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.benefit.benefitcondition.ChristmasDDayCondition;
 import christmas.benefit.benefitcondition.FreeMenuCondition;
+import christmas.benefit.benefitcondition.SpecialCondition;
 import christmas.benefit.benefitcondition.WeekdayCondition;
 import christmas.benefit.benefitcondition.WeekendCondition;
 import christmas.domain.Order;
@@ -18,6 +19,7 @@ public class Planner {
     ChristmasDDayCondition christmasDDayCondition = new ChristmasDDayCondition();
     WeekdayCondition weekdayCondition = new WeekdayCondition();
     WeekendCondition weekendCondition = new WeekendCondition();
+    SpecialCondition specialCondition = new SpecialCondition();
 
     public void start() {
         outputView.printWelcomeMessage();
@@ -35,7 +37,9 @@ public class Planner {
             christmasDDayCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
             weekdayCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
             weekendCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
-            outputView.printBenefit(date, order, christmasDDayCondition, weekdayCondition, weekendCondition, freeMenuCondition);
+            specialCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
+            outputView.printBenefit(date, order, christmasDDayCondition, weekdayCondition, weekendCondition,
+                    specialCondition, freeMenuCondition);
         }
     }
 }

@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.benefit.benefitcondition.ChristmasDDayCondition;
 import christmas.benefit.benefitcondition.FreeMenuCondition;
+import christmas.benefit.benefitcondition.SpecialCondition;
 import christmas.benefit.benefitcondition.WeekdayCondition;
 import christmas.benefit.benefitcondition.WeekendCondition;
 import christmas.domain.Order;
@@ -44,7 +45,7 @@ public class OutputView {
 
     public void printBenefit(int date, Order order, ChristmasDDayCondition christmasDDayCondition,
                              WeekdayCondition weekdayCondition, WeekendCondition weekendCondition,
-                             FreeMenuCondition freeMenuCondition) {
+                             SpecialCondition specialCondition, FreeMenuCondition freeMenuCondition) {
         System.out.println(ConstantUtils.DISCOUNT_TITLE);
         if (christmasDDayCondition.isSatisfied()) {
             System.out.printf("크리스마스 디데이 할인: %s원\n", christmasDDayCondition.printBenefit(date, order));
@@ -54,6 +55,9 @@ public class OutputView {
         }
         if (weekendCondition.isSatisfied()) {
             System.out.printf("주말 할인: %s원\n", weekendCondition.printBenefit(date, order));
+        }
+        if (specialCondition.isSatisfied()) {
+            System.out.printf("특별 할인: %s원\n", specialCondition.printBenefit(date, order));
         }
         if (freeMenuCondition.isSatisfied()) {
             System.out.printf("증정 이벤트: %s원\n", freeMenuCondition.printBenefit(date, order));
