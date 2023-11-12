@@ -33,13 +33,14 @@ public class Planner {
         outputView.printTotalPriceBeforeBenefit(totalPriceBeforeEvent);
         freeMenuCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
         outputView.printFreeMenu(freeMenuCondition);
-        if (totalPriceBeforeEvent > 1000) {
+        if (totalPriceBeforeEvent > 10000) {
             christmasDDayCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
             weekdayCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
             weekendCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
             specialCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
-            outputView.printBenefit(date, order, christmasDDayCondition, weekdayCondition, weekendCondition,
-                    specialCondition, freeMenuCondition);
         }
+        outputView.printBenefit(date, order, christmasDDayCondition, weekdayCondition, weekendCondition,
+                specialCondition, freeMenuCondition);
+
     }
 }
