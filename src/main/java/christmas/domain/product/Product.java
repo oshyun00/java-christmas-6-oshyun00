@@ -1,4 +1,4 @@
-package christmas.product;
+package christmas.domain.product;
 
 public class Product {
     String name;
@@ -7,5 +7,9 @@ public class Product {
     public Product(String name, int price) {
         this.name = name;
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
     }
 }

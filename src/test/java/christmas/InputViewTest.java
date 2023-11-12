@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.domain.product.ProductRepository;
 import christmas.view.InputView;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +19,7 @@ public class InputViewTest {
 
     @BeforeEach
     void setUp() {
-        inputView = new InputView();
+        inputView = new InputView(new ProductRepository());
     }
 
     @AfterEach

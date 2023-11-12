@@ -1,6 +1,6 @@
-package christmas.product.subproduct;
+package christmas.domain.product.subproduct;
 
-import christmas.product.Product;
+import christmas.domain.product.Product;
 
 public class Appetizer extends Product {
     private Appetizer(String name, int price) {

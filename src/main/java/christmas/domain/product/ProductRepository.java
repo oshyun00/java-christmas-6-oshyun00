@@ -1,9 +1,9 @@
-package christmas.product;
+package christmas.domain.product;
 
-import christmas.product.subproduct.Appetizer;
-import christmas.product.subproduct.Dessert;
-import christmas.product.subproduct.Drink;
-import christmas.product.subproduct.MainDish;
+import christmas.domain.product.subproduct.Dessert;
+import christmas.domain.product.subproduct.Drink;
+import christmas.domain.product.subproduct.MainDish;
+import christmas.domain.product.subproduct.Appetizer;
 
 public class ProductRepository {
     private final Product[] products = {
@@ -20,4 +20,13 @@ public class ProductRepository {
             Drink.of("레드와인", 60000),
             Drink.of("샴페인", 25000)
     };
+
+    public Product findByName(String name) {
+        for (Product product : products) {
+            if (product.getName().equals(name)) {
+                return product;
+            }
+        }
+        return null;
+    }
 }
