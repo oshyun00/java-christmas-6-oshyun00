@@ -9,6 +9,7 @@ public class Planner {
 
     public void start(){
         outputView.printWelcomeMessage();
-        inputView.readDate();
+        int date = inputView.readDate();
+        System.out.println(date);
     }
 }
