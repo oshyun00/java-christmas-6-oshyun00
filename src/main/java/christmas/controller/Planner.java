@@ -15,5 +15,6 @@ public class Planner {
         int date = inputView.readDate();
         Map<Product, Integer> orderMenu = inputView.readMenu();
         System.out.println(orderMenu);
+        outputView.printEventPreviewMessage(date);
     }
 }
