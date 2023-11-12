@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.benefit.benefitcondition.ChristmasDDayCondition;
 import christmas.benefit.benefitcondition.FreeMenuCondition;
 import christmas.util.ConstantUtils;
 import java.text.DecimalFormat;
@@ -30,11 +31,23 @@ public class OutputView {
 
     public void printFreeMenu(FreeMenuCondition freeMenuCondition) {
         System.out.println(ConstantUtils.FREE_MENU_TITLE);
-        if(freeMenuCondition.isSatisfied()) {
+        if (freeMenuCondition.isSatisfied()) {
             System.out.println(ConstantUtils.FREE_MENU);
         }
-        if(!freeMenuCondition.isSatisfied()){
+        if (!freeMenuCondition.isSatisfied()) {
             System.out.println(ConstantUtils.NOT_FREE_MENU);
         }
+    }
+
+    public void printBenefit(int date, ChristmasDDayCondition christmasDDayCondition,
+                             FreeMenuCondition freeMenuCondition) {
+        System.out.println(ConstantUtils.DISCOUNT_TITLE);
+        if (christmasDDayCondition.isSatisfied()) {
+            System.out.printf("크리스마스 디데이 할인: %s원\n", christmasDDayCondition.printBenefit(date));
+        }
+        if (freeMenuCondition.isSatisfied()) {
+            System.out.printf("증정 이벤트: %s원\n", freeMenuCondition.calculateBenefit(date));
+        }
+
     }
 }

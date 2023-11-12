@@ -1,25 +1,33 @@
 package christmas.benefit.benefitcondition;
 
-public class FreeMenuCondition implements BenefitCondition {
+import java.text.DecimalFormat;
+
+public class ChristmasDDayCondition implements BenefitCondition {
     private boolean isSatisfied = false;
+    DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
     @Override
     public void checkDiscountCondition(int date, int totalPrice) {
-
-        if (totalPrice >= 120000) setSatisfied(true);
+        if (date < 26) {
+            setSatisfied(true);
+        }
     }
 
     @Override
     public int calculateBenefit(int date) {
-        if(isSatisfied) return -25000;
-        return 0;
+        return - (1000 + 100 * (date - 1));
     }
+
+    public String printBenefit(int date){
+        return decimalFormat.format(calculateBenefit(date));
+    };
 
     @Override
     public boolean isSatisfied() {
         return isSatisfied;
     }
+
     private void setSatisfied(boolean satisfied) {
         isSatisfied = satisfied;
     }
-
 }

@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.benefit.benefitcondition.ChristmasDDayCondition;
 import christmas.benefit.benefitcondition.FreeMenuCondition;
 import christmas.domain.Order;
 import christmas.domain.product.Product;
@@ -12,6 +13,7 @@ public class Planner {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView(new ProductRepository());
     FreeMenuCondition freeMenuCondition = new FreeMenuCondition();
+    ChristmasDDayCondition christmasDDayCondition = new ChristmasDDayCondition();
 
     public void start(){
         outputView.printWelcomeMessage();
@@ -25,5 +27,9 @@ public class Planner {
         outputView.printTotalPriceBeforeBenefit(totalPriceBeforeEvent);
         freeMenuCondition.checkDiscountCondition(date,totalPriceBeforeEvent);
         outputView.printFreeMenu(freeMenuCondition);
+        if(totalPriceBeforeEvent > 1000) {
+            christmasDDayCondition.checkDiscountCondition(date, totalPriceBeforeEvent);
+            outputView.printBenefit(date, christmasDDayCondition, freeMenuCondition);
+        }
     }
 }
