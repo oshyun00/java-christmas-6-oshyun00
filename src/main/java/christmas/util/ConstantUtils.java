@@ -10,6 +10,8 @@ public class ConstantUtils {
     public static final String TOTAL_PRICE_BEFORE_BENEFIT_TITLE = "<할인 전 총주문 금액>";
     public static final String TOTAL_PRICE_BEFORE_BENEFIT = "%s원\n";
     public static final String FREE_MENU_TITLE = "<증정 메뉴>";
+    public static final String FREE_MENU = "샴페인 1개";
+    public static final String NOT_FREE_MENU = "없음";
     public static final String DISCOUNT_TITLE = "<혜택 내역>";
     public static final String TOTAL_BENEFIT_TITLE = "<총혜택 금액>";
     public static final String TOTAL_PRICE_AFTER_BENEFIT_TITLE = "<할인 후 예상 결제 금액>";

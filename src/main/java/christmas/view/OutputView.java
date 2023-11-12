@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.benefit.benefitcondition.FreeMenuCondition;
 import christmas.util.ConstantUtils;
 import java.text.DecimalFormat;
 
@@ -24,5 +25,16 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         String totalPrice = decimalFormat.format(calculateTotalPriceBeforeEvent);
         System.out.printf(ConstantUtils.TOTAL_PRICE_BEFORE_BENEFIT, totalPrice);
+        System.out.printf(ConstantUtils.NEW_LINE);
+    }
+
+    public void printFreeMenu(FreeMenuCondition freeMenuCondition) {
+        System.out.println(ConstantUtils.FREE_MENU_TITLE);
+        if(freeMenuCondition.isSatisfied()) {
+            System.out.println(ConstantUtils.FREE_MENU);
+        }
+        if(!freeMenuCondition.isSatisfied()){
+            System.out.println(ConstantUtils.NOT_FREE_MENU);
+        }
     }
 }
