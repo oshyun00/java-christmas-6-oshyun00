@@ -28,6 +28,11 @@ public class FreeMenuCondition implements BenefitCondition {
     }
 
     @Override
+    public String printDefaultMessage() {
+        return "증정 이벤트: ";
+    }
+
+    @Override
     public boolean isSatisfied() {
         return isSatisfied;
     }

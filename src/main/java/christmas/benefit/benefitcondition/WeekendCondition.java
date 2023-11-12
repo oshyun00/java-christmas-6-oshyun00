@@ -29,6 +29,11 @@ public class WeekendCondition implements BenefitCondition {
     }
 
     @Override
+    public String printDefaultMessage() {
+        return "주말 할인: ";
+    }
+
+    @Override
     public boolean isSatisfied() {
         return isSatisfied;
     }

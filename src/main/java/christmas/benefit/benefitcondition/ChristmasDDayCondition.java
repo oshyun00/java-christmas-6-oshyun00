@@ -24,6 +24,11 @@ public class ChristmasDDayCondition implements BenefitCondition {
     }
 
     @Override
+    public String printDefaultMessage() {
+        return "크리스마스 디데이 할인: ";
+    }
+
+    @Override
     public boolean isSatisfied() {
         return isSatisfied;
     }

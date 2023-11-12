@@ -30,6 +30,11 @@ public class SpecialCondition implements BenefitCondition {
     }
 
     @Override
+    public String printDefaultMessage() {
+        return "특별 할인: ";
+    }
+
+    @Override
     public boolean isSatisfied() {
         return isSatisfied;
     }
