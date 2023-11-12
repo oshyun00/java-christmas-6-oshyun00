@@ -11,5 +11,6 @@ public class Planner {
         outputView.printWelcomeMessage();
         int date = inputView.readDate();
         System.out.println(date);
+        inputView.readMenu();
     }
 }

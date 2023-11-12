@@ -1,9 +1,12 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.product.Product;
+import christmas.product.ProductRepository;
 import christmas.util.ConstantUtils;
 
 public class InputView {
+    ProductRepository productRepository;
     public int readDate() {
         int date;
         while (true) {
@@ -18,6 +21,17 @@ public class InputView {
             }
         }
         return date;
+    }
+
+    public void readMenu() {
+        Product[] items = new Product[0];
+        while(true) {
+//            try{
+                System.out.println(ConstantUtils.ASK_ORDER_DETAILS_MESSAGE);
+                String input = Console.readLine();
+                break;
+//            } catch
+        }
     }
 
     private static void printError(IllegalArgumentException error) {
