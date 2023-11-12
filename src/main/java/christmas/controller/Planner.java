@@ -19,5 +19,6 @@ public class Planner {
         outputView.printEventPreviewMessage(date);
         Order order = new Order(orderMenu);
         outputView.printOrderMenu(order.printOrder());
+        outputView.printTotalPriceBeforeBenefit(order.calculateTotalPriceBeforeEvent());
     }
 }

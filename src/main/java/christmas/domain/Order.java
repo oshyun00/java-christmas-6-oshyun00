@@ -24,4 +24,16 @@ public class Order {
         }
         return stringJoiner.toString();
     }
+
+    public int calculateTotalPriceBeforeEvent(){
+        int price = 0;
+        for(Map.Entry<Product, Integer> entry: orders.entrySet()){
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
+
+            int eachPrice = product.getPrice();
+            price += eachPrice * quantity;
+        }
+        return price;
+    }
 }

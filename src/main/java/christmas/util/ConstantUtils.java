@@ -8,6 +8,7 @@ public class ConstantUtils {
     public static final String NEW_LINE = "\n";
     public static final String ORDER_MENU_TITLE = "<주문 메뉴>";
     public static final String TOTAL_PRICE_BEFORE_BENEFIT_TITLE = "<할인 전 총주문 금액>";
+    public static final String TOTAL_PRICE_BEFORE_BENEFIT = "%s원\n";
     public static final String FREE_MENU_TITLE = "<증정 메뉴>";
     public static final String DISCOUNT_TITLE = "<혜택 내역>";
     public static final String TOTAL_BENEFIT_TITLE = "<총혜택 금액>";
