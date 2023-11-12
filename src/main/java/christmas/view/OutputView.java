@@ -40,15 +40,19 @@ public class OutputView {
         }
     }
 
-    public void printBenefit(int date, Order order, Benefit benefit, FreeMenuCondition freeMenuCondition) {
+    public void printBenefit(int date, Order order, Benefit benefit) {
         System.out.println(ConstantUtils.DISCOUNT_TITLE);
-        if(benefit.noBenefit()) {
+        if (benefit.noBenefit()) {
             System.out.println("없음");
         }
-        System.out.println(benefit.getBenefits(date,order));
-        if (freeMenuCondition.isSatisfied()) {
-            System.out.printf("증정 이벤트: %s원\n", freeMenuCondition.printBenefit(date, order));
-        }
+        System.out.println(benefit.getBenefits(date, order));
+    }
 
+    public void printTotalAmountOfBenefit(int date, Order order, Benefit benefit) {
+        int AmountOfBenefit = benefit.getTotalBenefit(date, order);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        String totalAmountOfBenefit = decimalFormat.format(AmountOfBenefit);
+        System.out.println(ConstantUtils.TOTAL_BENEFIT_TITLE);
+        System.out.printf("%s원", totalAmountOfBenefit);
     }
 }

@@ -24,6 +24,16 @@ public class Benefit {
         }
     }
 
+    public int getTotalBenefit(int date, Order order){
+        int totalBenefit = 0;
+        for (BenefitCondition benefitCondition : benefitConditions) {
+            if (benefitCondition.isSatisfied()) {
+                totalBenefit += benefitCondition.calculateBenefit(date, order);
+            }
+        }
+        return totalBenefit;
+    }
+
     public String getBenefits(int date, Order order) {
         StringBuilder stringBuilder = new StringBuilder();
         for (BenefitCondition benefitCondition : benefitConditions) {

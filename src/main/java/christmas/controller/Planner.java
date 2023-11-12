@@ -20,7 +20,7 @@ public class Planner {
     FreeMenuCondition freeMenuCondition = new FreeMenuCondition();
     Benefit benefit = new Benefit(
             new BenefitCondition[]{new ChristmasDDayCondition(), new WeekdayCondition(), new WeekendCondition(),
-                    new SpecialCondition()});
+                    new SpecialCondition(), new FreeMenuCondition()});
 
     public void start() {
         outputView.printWelcomeMessage();
@@ -32,12 +32,13 @@ public class Planner {
         outputView.printOrderMenu(order.printOrder());
         int totalPriceBeforeEvent = order.calculateTotalPriceBeforeEvent();
         outputView.printTotalPriceBeforeBenefit(totalPriceBeforeEvent);
-        freeMenuCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
-        outputView.printFreeMenu(freeMenuCondition);
+//        freeMenuCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
+//        outputView.printFreeMenu(freeMenuCondition);
         if (totalPriceBeforeEvent > 10000) {
             benefit.checkBenefit(date, totalPriceBeforeEvent, order);
         }
-        outputView.printBenefit(date, order, benefit, freeMenuCondition);
+        outputView.printBenefit(date, order, benefit);
+        outputView.printTotalAmountOfBenefit(date,order,benefit);
 
     }
 }
