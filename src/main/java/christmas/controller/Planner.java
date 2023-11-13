@@ -1,12 +1,12 @@
 package christmas.controller;
 
-import christmas.benefit.benefitcondition.Benefit;
-import christmas.benefit.benefitcondition.BenefitCondition;
-import christmas.benefit.benefitcondition.ChristmasDDayCondition;
-import christmas.benefit.benefitcondition.FreeMenuCondition;
-import christmas.benefit.benefitcondition.SpecialCondition;
-import christmas.benefit.benefitcondition.WeekdayCondition;
-import christmas.benefit.benefitcondition.WeekendCondition;
+import christmas.domain.benefit.Benefit;
+import christmas.domain.benefit.benefitcondition.BenefitCondition;
+import christmas.domain.benefit.benefitcondition.ChristmasDDayCondition;
+import christmas.domain.benefit.benefitcondition.FreeMenuCondition;
+import christmas.domain.benefit.benefitcondition.SpecialCondition;
+import christmas.domain.benefit.benefitcondition.WeekdayCondition;
+import christmas.domain.benefit.benefitcondition.WeekendCondition;
 import christmas.domain.Badge;
 import christmas.domain.Order;
 import christmas.domain.product.Product;

@@ -1,7 +1,7 @@
 package christmas.view;
 
-import christmas.benefit.benefitcondition.Benefit;
-import christmas.benefit.benefitcondition.FreeMenuCondition;
+import christmas.domain.benefit.Benefit;
+import christmas.domain.benefit.benefitcondition.FreeMenuCondition;
 import christmas.domain.Order;
 import christmas.util.ConstantUtils;
 import java.text.DecimalFormat;

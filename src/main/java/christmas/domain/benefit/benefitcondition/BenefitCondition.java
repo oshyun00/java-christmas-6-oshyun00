@@ -1,4 +1,4 @@
-package christmas.benefit.benefitcondition;
+package christmas.domain.benefit.benefitcondition;
 
 import christmas.domain.Order;
 

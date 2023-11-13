@@ -1,6 +1,7 @@
-package christmas.benefit.benefitcondition;
+package christmas.domain.benefit;
 
 import christmas.domain.Order;
+import christmas.domain.benefit.benefitcondition.BenefitCondition;
 
 public class Benefit {
     BenefitCondition[] benefitConditions;
