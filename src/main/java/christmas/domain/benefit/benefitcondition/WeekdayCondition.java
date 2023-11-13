@@ -6,14 +6,14 @@ import java.time.LocalDate;
 
 public class WeekdayCondition implements BenefitCondition {
     private boolean isSatisfied = false;
-    DecimalFormat decimalFormat = new DecimalFormat("###,###");
+    private static final int BENEFIT_VALUE = 2023;
 
     @Override
     public void checkDiscountCondition(int date, Order order) {
         LocalDate localDate = LocalDate.of(2023, 12, date);
         int dayOfWeekNumber = localDate.getDayOfWeek().getValue();
 
-        if (order.countDessert() >0 &&(dayOfWeekNumber == 7 || dayOfWeekNumber < 5 )) {
+        if (order.countDessert() > 0 && (dayOfWeekNumber == 7 || dayOfWeekNumber < 5)) {
             setSatisfied(true);
         }
     }
@@ -21,16 +21,7 @@ public class WeekdayCondition implements BenefitCondition {
     @Override
     public int calculateBenefit(int date, Order order) {
         int numberOfDessert = order.countDessert();
-        return -(numberOfDessert * 2023);
-    }
-
-    public String printBenefit(int date, Order order) {
-        return decimalFormat.format(calculateBenefit(date, order));
-    }
-
-    @Override
-    public String printDefaultMessage() {
-        return "평일 할인: ";
+        return -(numberOfDessert * BENEFIT_VALUE);
     }
 
     @Override
@@ -38,7 +29,19 @@ public class WeekdayCondition implements BenefitCondition {
         return isSatisfied;
     }
 
-    private void setSatisfied(boolean satisfied) {
+    @Override
+    public void setSatisfied(boolean satisfied) {
         isSatisfied = satisfied;
+    }
+
+    @Override
+    public String printBenefit(int date, Order order) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(calculateBenefit(date, order));
+    }
+
+    @Override
+    public String printDefaultMessage() {
+        return "평일 할인: ";
     }
 }

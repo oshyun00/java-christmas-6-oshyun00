@@ -10,6 +10,8 @@ public interface BenefitCondition {
 
     boolean isSatisfied();
 
+    void setSatisfied(boolean satisfied);
+
     String printBenefit(int date, Order order);
 
     String printDefaultMessage();

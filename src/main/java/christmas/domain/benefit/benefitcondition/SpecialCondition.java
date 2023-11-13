@@ -8,30 +8,21 @@ import java.util.List;
 
 public class SpecialCondition implements BenefitCondition {
     private boolean isSatisfied = false;
-    DecimalFormat decimalFormat = new DecimalFormat("###,###");
+    private static final int BENEFIT_VALUE = -1000;
+    private static final int[] SPECIAL_DAYS = new int[]{3, 10, 17, 24, 25, 31};
 
     @Override
     public void checkDiscountCondition(int date, Order order) {
-        int[] specialDays = new int[]{3,10,17,24,25,31};
-        List<Integer> specialDay = new ArrayList<>(Arrays.stream(specialDays).boxed().toList());
+        List<Integer> specialDay = new ArrayList<>(Arrays.stream(SPECIAL_DAYS).boxed().toList());
 
-        if(specialDay.contains(date)){
+        if (specialDay.contains(date)) {
             setSatisfied(true);
         }
     }
 
     @Override
     public int calculateBenefit(int date, Order order) {
-        return -1000;
-    }
-
-    public String printBenefit(int date, Order order) {
-        return decimalFormat.format(calculateBenefit(date, order));
-    }
-
-    @Override
-    public String printDefaultMessage() {
-        return "특별 할인: ";
+        return BENEFIT_VALUE;
     }
 
     @Override
@@ -39,7 +30,19 @@ public class SpecialCondition implements BenefitCondition {
         return isSatisfied;
     }
 
-    private void setSatisfied(boolean satisfied) {
+    @Override
+    public void setSatisfied(boolean satisfied) {
         isSatisfied = satisfied;
+    }
+
+    @Override
+    public String printBenefit(int date, Order order) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(calculateBenefit(date, order));
+    }
+
+    @Override
+    public String printDefaultMessage() {
+        return "특별 할인: ";
     }
 }
