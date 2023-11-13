@@ -16,9 +16,9 @@ import christmas.view.OutputView;
 import java.util.Map;
 
 public class Planner {
+    private final static int MINIMUM_PRICE_FOR_BENEFIT = 10000;
     OutputView outputView = new OutputView();
     InputView inputView = new InputView(new ProductRepository());
-    FreeMenuCondition freeMenuCondition = new FreeMenuCondition();
     Badge badge = new Badge();
     Benefit benefit = new Benefit(
             new BenefitCondition[]{new ChristmasDDayCondition(), new WeekdayCondition(), new WeekendCondition(),
@@ -30,19 +30,21 @@ public class Planner {
         Map<Product, Integer> orderMenu = inputView.readMenu();
         outputView.printEventPreviewMessage(date);
         Order order = new Order(orderMenu);
+
         outputView.printOrderMenu(order.printOrder());
         int totalPriceBeforeEvent = order.calculateTotalPriceBeforeEvent();
         outputView.printTotalPriceBeforeBenefit(totalPriceBeforeEvent);
-        freeMenuCondition.checkDiscountCondition(date, order);
-        outputView.printFreeMenu(freeMenuCondition);
-        if (totalPriceBeforeEvent > 10000) {
-            benefit.checkBenefit(date, totalPriceBeforeEvent, order);
+        if (totalPriceBeforeEvent > MINIMUM_PRICE_FOR_BENEFIT) {
+            benefit.checkBenefitCondition(date, order);
         }
+        outputView.printFreeMenu(benefit);
         outputView.printBenefit(date, order, benefit);
+
         int totalBenefit = benefit.getTotalBenefit(date, order);
         outputView.printTotalAmountOfBenefit(totalBenefit);
-        int totalBenefitPaymentAmount = benefit.getFinalBenefitAmount(date, order);
-        int finalPaymentAmount = totalPriceBeforeEvent + totalBenefitPaymentAmount;
+
+        int finalBenefitAmount = benefit.getFinalBenefitAmount(date, order);
+        int finalPaymentAmount = totalPriceBeforeEvent + finalBenefitAmount;
         outputView.printExpectedPaymentAmount(finalPaymentAmount);
         String badgeTitle = badge.issueBadge(totalBenefit);
         outputView.printBadge(badgeTitle);

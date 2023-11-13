@@ -2,6 +2,7 @@ package christmas.domain.benefit;
 
 import christmas.domain.Order;
 import christmas.domain.benefit.benefitcondition.BenefitCondition;
+import christmas.domain.benefit.benefitcondition.FreeMenuCondition;
 
 public class Benefit {
     BenefitCondition[] benefitConditions;
@@ -10,7 +11,7 @@ public class Benefit {
         this.benefitConditions = benefitConditions;
     }
 
-    public boolean noBenefit() {
+    public boolean checkNoBenefit() {
         for (BenefitCondition benefitCondition : benefitConditions) {
             if (benefitCondition.isSatisfied()) {
                 return false;
@@ -19,13 +20,13 @@ public class Benefit {
         return true;
     }
 
-    public void checkBenefit(int date, int totalPriceBeforeEvent, Order order) {
+    public void checkBenefitCondition(int date, Order order) {
         for (BenefitCondition benefitCondition : benefitConditions) {
             benefitCondition.checkDiscountCondition(date, order);
         }
     }
 
-    public int getTotalBenefit(int date, Order order){
+    public int getTotalBenefit(int date, Order order) {
         int totalBenefit = 0;
         for (BenefitCondition benefitCondition : benefitConditions) {
             if (benefitCondition.isSatisfied()) {
@@ -35,23 +36,32 @@ public class Benefit {
         return totalBenefit;
     }
 
-    public String getBenefits(int date, Order order) {
+    public int getFinalBenefitAmount(int date, Order order) {
+        int totalBenefit = getTotalBenefit(date, order);
+        if (hasFreeMenu()) {
+            totalBenefit -= FreeMenuCondition.BENEFIT_VALUE;
+        }
+        return totalBenefit;
+    }
+
+    public boolean hasFreeMenu() {
+        for (BenefitCondition benefitCondition : benefitConditions) {
+            if (benefitCondition instanceof FreeMenuCondition) {
+                return benefitCondition.isSatisfied();
+            }
+        }
+        return false;
+    }
+
+    public String printBenefits(int date, Order order) {
         StringBuilder stringBuilder = new StringBuilder();
         for (BenefitCondition benefitCondition : benefitConditions) {
             if (benefitCondition.isSatisfied()) {
-                stringBuilder.append(benefitCondition.printDefaultMessage()).append(benefitCondition.printBenefit(date, order))
+                stringBuilder.append(benefitCondition.printDefaultMessage())
+                        .append(benefitCondition.printBenefit(date, order))
                         .append("원\n");
             }
         }
         return stringBuilder.toString();
-    }
-
-    public int getFinalBenefitAmount(int date, Order order){
-
-        int totalBenefit = getTotalBenefit(date, order);
-        if(benefitConditions[4].isSatisfied())  {
-            totalBenefit += 25000;
-        }
-        return totalBenefit;
     }
 }

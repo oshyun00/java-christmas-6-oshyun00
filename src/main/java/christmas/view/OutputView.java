@@ -1,8 +1,7 @@
 package christmas.view;
 
-import christmas.domain.benefit.Benefit;
-import christmas.domain.benefit.benefitcondition.FreeMenuCondition;
 import christmas.domain.Order;
+import christmas.domain.benefit.Benefit;
 import christmas.util.ConstantUtils;
 import java.text.DecimalFormat;
 
@@ -30,12 +29,12 @@ public class OutputView {
         System.out.printf(ConstantUtils.NEW_LINE);
     }
 
-    public void printFreeMenu(FreeMenuCondition freeMenuCondition) {
+    public void printFreeMenu(Benefit benefit) {
         System.out.println(ConstantUtils.FREE_MENU_TITLE);
-        if (freeMenuCondition.isSatisfied()) {
+        if (benefit.hasFreeMenu()) {
             System.out.println(ConstantUtils.FREE_MENU);
         }
-        if (!freeMenuCondition.isSatisfied()) {
+        if (!benefit.hasFreeMenu()) {
             System.out.println(ConstantUtils.NOT_FREE_MENU);
         }
     }
@@ -43,10 +42,10 @@ public class OutputView {
     public void printBenefit(int date, Order order, Benefit benefit) {
         System.out.printf(ConstantUtils.NEW_LINE);
         System.out.println(ConstantUtils.DISCOUNT_TITLE);
-        if (benefit.noBenefit()) {
+        if (benefit.checkNoBenefit()) {
             System.out.println("없음");
         }
-        System.out.println(benefit.getBenefits(date, order));
+        System.out.println(benefit.printBenefits(date, order));
     }
 
     public void printTotalAmountOfBenefit(int benefit) {

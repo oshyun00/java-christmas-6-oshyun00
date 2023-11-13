@@ -5,12 +5,12 @@ import java.text.DecimalFormat;
 
 public class FreeMenuCondition implements BenefitCondition {
     private boolean isSatisfied = false;
-    private static final int MIN_BENEFIT_PRICE = 120000;
-    private static final int BENEFIT_VALUE = -25000;
+    private static final int MINIMUM_PRICE_FOR_BENEFIT = 120000;
+    public static final int BENEFIT_VALUE = -25000;
 
     @Override
     public void checkDiscountCondition(int date, Order order) {
-        if (order.calculateTotalPriceBeforeEvent() >= MIN_BENEFIT_PRICE) {
+        if (order.calculateTotalPriceBeforeEvent() >= MINIMUM_PRICE_FOR_BENEFIT) {
             setSatisfied(true);
         }
     }
