@@ -3,10 +3,14 @@ package christmas.util;
 import christmas.domain.product.Product;
 import christmas.domain.product.ProductRepository;
 import christmas.domain.product.subproduct.Drink;
+import christmas.exception.BusinessLogicException;
+import christmas.exception.ExceptionMessage;
 import java.util.Map;
 import java.util.Set;
 
 public class Validator {
+    private static final int MIN_ORDER_QUANTITY = 1;
+    private static final int MAX_ORDER_QUANTITY = 20;
     private final ProductRepository productRepository;
     private final Parser parser;
 
@@ -18,7 +22,7 @@ public class Validator {
     public int validDate(String input) {
         int parsedDate = parser.parseNumeric(input);
         if (parsedDate < 1 || parsedDate > 31) {
-            throw new IllegalArgumentException("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new BusinessLogicException(ExceptionMessage.INVALID_DATE);
         }
         return parsedDate;
     }
@@ -37,36 +41,36 @@ public class Validator {
 
     private void checkSpace(String input) {
         if (input.contains(" ")) {
-            throw new IllegalArgumentException("공백 포함 불가");
+            throw new BusinessLogicException(ExceptionMessage.INVALID_ORDER);
         }
     }
 
     private void checkAppropriateMenu(Map<Product, Integer> orderMap, String menu) {
         String[] pair = menu.split("-");
         if (pair.length != 2) {
-            throw new IllegalArgumentException("메뉴 혹은 주문수량이 잘못됨");
+            throw new BusinessLogicException(ExceptionMessage.INVALID_ORDER);
         }
         Product product = productRepository.findByName(pair[0]);
         if (product == null) {
-            throw new IllegalArgumentException("메뉴판에 없음");
+            throw new BusinessLogicException(ExceptionMessage.INVALID_ORDER);
         }
         int amount = parser.parseAmount(pair[1]);
-        if (amount < 1 || amount > 20) {
-            throw new IllegalArgumentException("메뉴는 1이상 20미만이어야함");
+        if (amount < MIN_ORDER_QUANTITY) {
+            throw new BusinessLogicException(ExceptionMessage.INVALID_ORDER);
         }
         orderMap.put(product, amount);
     }
 
     private void checkDuplicateMenu(Map<Product, Integer> orderProducts, int orderMenuCount) {
         if (orderProducts.size() < orderMenuCount) {
-            throw new IllegalArgumentException("중복된 메뉴 불가");
+            throw new BusinessLogicException(ExceptionMessage.INVALID_ORDER);
         }
     }
 
     private void checkTotalMenuCount(Map<Product, Integer> orderProducts) {
         int totalMenuCount = orderProducts.values().stream().mapToInt(a -> a).sum();
-        if (totalMenuCount > 20) {
-            throw new IllegalArgumentException("메뉴 20개 이상 주문 불가");
+        if (totalMenuCount > MAX_ORDER_QUANTITY) {
+            throw new BusinessLogicException(ExceptionMessage.OVER_MAX_ORDER_QUANTITY);
         }
     }
 
@@ -80,7 +84,7 @@ public class Validator {
             }
         }
         if (drink == totalMenu) {
-            throw new IllegalArgumentException("음료만 주문 불가");
+            throw new BusinessLogicException(ExceptionMessage.DRINKS_ONLY_ORDER_NOT_ALLOWED);
         }
     }
 }

@@ -1,11 +1,14 @@
 package christmas.util;
 
+import christmas.exception.BusinessLogicException;
+import christmas.exception.ExceptionMessage;
+
 public class Parser {
     public int parseNumeric(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException error) {
-            throw new IllegalArgumentException("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new BusinessLogicException(ExceptionMessage.INVALID_DATE);
         }
     }
 
@@ -13,7 +16,7 @@ public class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException error) {
-            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new BusinessLogicException(ExceptionMessage.INVALID_ORDER);
         }
     }
 }

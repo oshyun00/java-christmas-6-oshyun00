@@ -29,11 +29,11 @@ public class Planner {
         int totalPriceBeforeEvent = order.calculateTotalPriceBeforeEvent();
         checkBenefitConditions(date, order, totalPriceBeforeEvent);
 
-        int totalBenefit = getTotalBenefit(date, order);
+        int totalBenefit = benefit.getTotalBenefit(date, order);
         int finalPaymentAmount = getFinalPaymentAmount(date, order, totalPriceBeforeEvent);
         String badgeTitle = badge.issueBadge(totalBenefit);
 
-        printResults(date, order, totalPriceBeforeEvent, finalPaymentAmount, badgeTitle);
+        printResults(date, order, totalPriceBeforeEvent, totalBenefit, finalPaymentAmount, badgeTitle);
     }
 
     private void checkBenefitConditions(int date, Order order, int totalPriceBeforeEvent) {
@@ -42,20 +42,16 @@ public class Planner {
         }
     }
 
-    private void printResults(int date, Order order, int totalPriceBeforeEvent, int finalPaymentAmount,
+    private void printResults(int date, Order order, int totalPriceBeforeEvent,
+                              int totalBenefit, int finalPaymentAmount,
                               String badgeTitle) {
         outputView.printOrderMenu(order.printOrder());
         outputView.printTotalPriceBeforeBenefit(totalPriceBeforeEvent);
         outputView.printFreeMenu(benefit);
         outputView.printBenefit(date, order, benefit);
+        outputView.printTotalAmountOfBenefit(totalBenefit);
         outputView.printExpectedPaymentAmount(finalPaymentAmount);
         outputView.printBadge(badgeTitle);
-    }
-
-    private int getTotalBenefit(int date, Order order) {
-        int totalBenefit = benefit.getTotalBenefit(date, order);
-        outputView.printTotalAmountOfBenefit(totalBenefit);
-        return totalBenefit;
     }
 
     private int getFinalPaymentAmount(int date, Order order, int totalPriceBeforeEvent) {
