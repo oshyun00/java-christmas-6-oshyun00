@@ -33,7 +33,7 @@ public class Planner {
         outputView.printOrderMenu(order.printOrder());
         int totalPriceBeforeEvent = order.calculateTotalPriceBeforeEvent();
         outputView.printTotalPriceBeforeBenefit(totalPriceBeforeEvent);
-        freeMenuCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
+        freeMenuCondition.checkDiscountCondition(date, order);
         outputView.printFreeMenu(freeMenuCondition);
         if (totalPriceBeforeEvent > 10000) {
             benefit.checkBenefit(date, totalPriceBeforeEvent, order);

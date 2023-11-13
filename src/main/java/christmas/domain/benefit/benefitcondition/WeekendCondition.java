@@ -9,7 +9,7 @@ public class WeekendCondition implements BenefitCondition {
     DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
     @Override
-    public void checkDiscountCondition(int date, int totalPrice, Order order) {
+    public void checkDiscountCondition(int date, Order order) {
         LocalDate localDate = LocalDate.of(2023, 12, date);
         int dayOfWeekNumber = localDate.getDayOfWeek().getValue();
 

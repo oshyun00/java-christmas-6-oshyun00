@@ -21,7 +21,7 @@ public class Benefit {
 
     public void checkBenefit(int date, int totalPriceBeforeEvent, Order order) {
         for (BenefitCondition benefitCondition : benefitConditions) {
-            benefitCondition.checkDiscountCondition(date, totalPriceBeforeEvent, order);
+            benefitCondition.checkDiscountCondition(date, order);
         }
     }
 

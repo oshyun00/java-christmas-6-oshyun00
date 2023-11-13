@@ -7,9 +7,9 @@ public class FreeMenuCondition implements BenefitCondition {
     private boolean isSatisfied = false;
 
     @Override
-    public void checkDiscountCondition(int date, int totalPrice, Order order) {
+    public void checkDiscountCondition(int date, Order order) {
 
-        if (totalPrice >= 120000) {
+        if (order.calculateTotalPriceBeforeEvent() >= 120000) {
             setSatisfied(true);
         }
     }

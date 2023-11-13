@@ -11,7 +11,7 @@ public class SpecialCondition implements BenefitCondition {
     DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
     @Override
-    public void checkDiscountCondition(int date, int totalPrice, Order order) {
+    public void checkDiscountCondition(int date, Order order) {
         int[] specialDays = new int[]{3,10,17,24,25,31};
         List<Integer> specialDay = new ArrayList<>(Arrays.stream(specialDays).boxed().toList());
 

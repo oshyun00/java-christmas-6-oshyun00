@@ -8,7 +8,7 @@ public class ChristmasDDayCondition implements BenefitCondition {
     DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
     @Override
-    public void checkDiscountCondition(int date, int totalPrice, Order order) {
+    public void checkDiscountCondition(int date, Order order) {
         if (date < 26) {
             setSatisfied(true);
         }
