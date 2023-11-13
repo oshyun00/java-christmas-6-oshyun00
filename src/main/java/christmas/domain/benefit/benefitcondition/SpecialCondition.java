@@ -10,6 +10,7 @@ public class SpecialCondition implements BenefitCondition {
     private boolean isSatisfied = false;
     private static final int BENEFIT_VALUE = -1000;
     private static final int[] SPECIAL_DAYS = new int[]{3, 10, 17, 24, 25, 31};
+    private static final String DEFAULT_MESSAGE = "특별 할인: ";
 
     @Override
     public void checkDiscountCondition(int date, Order order) {
@@ -43,6 +44,6 @@ public class SpecialCondition implements BenefitCondition {
 
     @Override
     public String printDefaultMessage() {
-        return "특별 할인: ";
+        return DEFAULT_MESSAGE;
     }
 }

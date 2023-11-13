@@ -8,6 +8,7 @@ public class ChristmasDDayCondition implements BenefitCondition {
     private static final int MINIMUM_BENEFIT_VALUE = -1000;
     private static final int DAY_BENEFIT_VALUE = -100;
     private static final int LAST_DAY_OF_BENEFIT = 25;
+    private static final String DEFAULT_MESSAGE = "크리스마스 디데이 할인: ";
 
 
     @Override
@@ -40,6 +41,6 @@ public class ChristmasDDayCondition implements BenefitCondition {
 
     @Override
     public String printDefaultMessage() {
-        return "크리스마스 디데이 할인: ";
+        return DEFAULT_MESSAGE;
     }
 }

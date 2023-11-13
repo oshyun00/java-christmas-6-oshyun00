@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public class WeekendCondition implements BenefitCondition {
     private boolean isSatisfied = false;
     private static final int BENEFIT_VALUE = 2023;
+    private static final String DEFAULT_MESSAGE = "주말 할인: ";
 
     @Override
     public void checkDiscountCondition(int date, Order order) {
@@ -41,6 +42,6 @@ public class WeekendCondition implements BenefitCondition {
 
     @Override
     public String printDefaultMessage() {
-        return "주말 할인: ";
+        return DEFAULT_MESSAGE;
     }
 }

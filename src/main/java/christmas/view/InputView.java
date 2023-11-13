@@ -1,8 +1,10 @@
 package christmas.view;
 
+import static christmas.util.ConstantUtils.ASK_EXPECTED_VISIT_DATE_MESSAGE;
+import static christmas.util.ConstantUtils.ASK_ORDER_DETAILS_MESSAGE;
+
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.product.Product;
-import christmas.util.ConstantUtils;
 import christmas.util.Validator;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +20,7 @@ public class InputView {
         int date;
         while (true) {
             try {
-                System.out.println(ConstantUtils.ASK_EXPECTED_VISIT_DATE_MESSAGE);
+                System.out.println(ASK_EXPECTED_VISIT_DATE_MESSAGE);
                 String input = Console.readLine();
                 date = validator.validDate(input);
                 break;
@@ -34,7 +36,7 @@ public class InputView {
         while (true) {
             orderProducts.clear();
             try {
-                System.out.println(ConstantUtils.ASK_ORDER_DETAILS_MESSAGE);
+                System.out.println(ASK_ORDER_DETAILS_MESSAGE);
                 String input = Console.readLine();
                 validator.validMenu(orderProducts, input);
                 break;

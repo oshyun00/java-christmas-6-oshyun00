@@ -7,6 +7,7 @@ public class FreeMenuCondition implements BenefitCondition {
     private boolean isSatisfied = false;
     private static final int MINIMUM_PRICE_FOR_BENEFIT = 120000;
     public static final int BENEFIT_VALUE = -25000;
+    private static final String DEFAULT_MESSAGE = "증정 이벤트: ";
 
     @Override
     public void checkDiscountCondition(int date, Order order) {
@@ -41,6 +42,6 @@ public class FreeMenuCondition implements BenefitCondition {
 
     @Override
     public String printDefaultMessage() {
-        return "증정 이벤트: ";
+        return DEFAULT_MESSAGE;
     }
 }

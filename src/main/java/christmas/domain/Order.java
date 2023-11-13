@@ -13,7 +13,6 @@ public class Order {
         this.orders = orders;
     }
 
-    // 주문한 메뉴 목록 출력
     public String printOrder() {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Map.Entry<Product, Integer> entry : orders.entrySet()) {
