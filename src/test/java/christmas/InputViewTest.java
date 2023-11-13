@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.product.ProductRepository;
+import christmas.util.Parser;
+import christmas.util.Validator;
 import christmas.view.InputView;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +21,7 @@ public class InputViewTest {
 
     @BeforeEach
     void setUp() {
-        inputView = new InputView(new ProductRepository());
+        inputView = new InputView(new Validator(new ProductRepository(), new Parser()));
     }
 
     @AfterEach
