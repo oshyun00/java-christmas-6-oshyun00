@@ -1,4 +1,4 @@
-package christmas;
+package christmas.view;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;

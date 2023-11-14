@@ -1,4 +1,4 @@
-package christmas;
+package christmas.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +11,6 @@ import christmas.domain.product.subproduct.Dessert;
 import christmas.domain.product.subproduct.MainDish;
 import christmas.util.Parser;
 import christmas.util.Validator;
-import christmas.view.InputView;
 import java.io.ByteArrayInputStream;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -54,7 +53,7 @@ public class InputViewTest extends MyTest {
         assertTrue(output().contains("[ERROR]"));
     }
 
-    @DisplayName("입력한 메뉴 갯수를 올바르게 반환하는지 확인한다.")
+    @DisplayName("입력한 메뉴와 개수를 올바르게 반환하는지 확인한다.")
     @Test
     void testReadMenu() {
         setInput("티본스테이크-1,초코케이크-2");

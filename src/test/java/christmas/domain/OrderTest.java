@@ -1,8 +1,7 @@
-package christmas;
+package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.domain.Order;
 import christmas.domain.product.Product;
 import christmas.domain.product.subproduct.Appetizer;
 import christmas.domain.product.subproduct.Dessert;
@@ -29,7 +28,7 @@ public class OrderTest {
         order = new Order(orderMenu);
     }
 
-    @DisplayName("주문한 메뉴명과 갯수를 출력하는지 확인한다.")
+    @DisplayName("주문한 메뉴명과 개수를 출력하는지 확인한다.")
     @Test
     void testPrintOrder() {
         assertThat(order.printOrder())
@@ -48,14 +47,14 @@ public class OrderTest {
                 .isEqualTo(173000);
     }
 
-    @DisplayName("메인요리 갯수를 리턴한다.")
+    @DisplayName("메인요리 개수를 리턴한다.")
     @Test
     void testCountMainDish() {
         assertThat(order.countMainDish())
                 .isEqualTo(2);
     }
 
-    @DisplayName("디저트 갯수를 리턴한다.")
+    @DisplayName("디저트 개수를 리턴한다.")
     @Test
     void testCountDessert() {
         assertThat(order.countDessert())
