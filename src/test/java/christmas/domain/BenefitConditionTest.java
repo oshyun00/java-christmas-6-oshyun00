@@ -39,7 +39,7 @@ public class BenefitConditionTest {
 
     @DisplayName("날짜별 크리스마스 할인 적용여부 확인")
     @ParameterizedTest
-    @CsvSource(value = {"ChristmasDDayCondition"})
+    @CsvSource(value = {"1,true", "25,true", "26,false"})
     void testChristmasDDayCondition(int date, boolean result) {
         benefitCondition = new ChristmasDDayCondition();
         benefitCondition.checkDiscountCondition(date, order);

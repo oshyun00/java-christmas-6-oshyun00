@@ -11,7 +11,7 @@ public class BadgeTest {
     Badge badge;
 
     @BeforeEach
-    void setUp() {
+    void init() {
         badge = new Badge();
     }
 
