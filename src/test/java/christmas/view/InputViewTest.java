@@ -73,7 +73,7 @@ public class InputViewTest extends MyTest {
     @DisplayName("올바르지 않은 주문을 입력한 경우 [ERROR]로 시작하는 에러 메세지를 출력하고 올바른 값을 입력받을때까지 입력받는다.")
     @Test
     void testReadMenuWithInvalidInput() {
-        setInput("invalid\n가나\n32\n티본스테이크-1");
+        setInput("invalid\n가나 \n티본스테이크-0\n32-1\n초코케이크-1,초코케이크-1\n제로콜라-1\n티본스테이크-21\n티본스테이크-1");
 
         inputView.readMenu();
         assertTrue(output().contains("[ERROR]"));
